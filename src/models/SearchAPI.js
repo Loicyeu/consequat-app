@@ -1,9 +1,10 @@
 "use strict";
 
-import {apiKey, baseUrl} from "@/models/API";
+import {apiKey} from "@/models/API";
 import Recipe from "@/models/Recipe";
 
 class SearchAPI {
+    static BASE_URL = "https://api.spoonacular.com/";
 
     /**
      *
@@ -12,7 +13,7 @@ class SearchAPI {
      * @return {Promise<unknown>} Retourne un tableau de recette simple (contenant juste un id, un nom et une image)
      */
     static findRecipes(query, params) {
-        const url = baseUrl + "recipes/complexSearch?apiKey=" + apiKey + "&query=" + query + "&number=10&" + this.verifyParams(params);
+        const url = this.BASE_URL + "recipes/complexSearch?apiKey=" + apiKey + "&query=" + query + "&number=10&" + this.verifyParams(params);
         return this.getRecipeFormQuery(url);
     }
 
@@ -22,16 +23,17 @@ class SearchAPI {
      * @return {Promise<unknown>} Retourne un tableau de recette simple.
      */
     static getRecipeFormQuery(query) {
+        console.log("QUERY : " + query)
         return new Promise((resolve, reject) => {
-           fetch(query)
-               .then(value => value.json())
-               .then(data => {
-                   data.request = query;
-                   resolve(data);
-               })
-               .catch(reason => {
-                   reject(reason)
-               });
+            fetch(query)
+                .then(value => value.json())
+                .then(data => {
+                    data.request = query;
+                    resolve(data);
+                })
+                .catch(reason => {
+                    reject(reason)
+                });
         });
     }
 
@@ -65,17 +67,28 @@ class SearchAPI {
      */
     static getRecipeInformation(recipeId) {
         return new Promise((resolve, reject) => {
-            const url = baseUrl + "recipes/" + recipeId + "/information?apiKey=" + apiKey;
+            const url = this.BASE_URL + "recipes/" + recipeId + "/information?apiKey=" + apiKey;
             fetch(url)
                 .then(value => value.json())
                 .then(data => {
-                    console.log(data);
                     resolve(new Recipe(data));
                 })
                 .catch(reason => reject(reason));
         });
     }
 
+    static getAutocomplete(query) {
+        return new Promise((resolve, reject) => {
+            const url = this.BASE_URL+"recipes/autocomplete?apiKey=" + apiKey + "&number=10&query="+query;
+            fetch(url)
+                .then(value => value.json())
+                .then(data => {
+                    console.log(data)
+                    resolve(data.map(el => el.title))
+                })
+                .catch(reason => reject(reason))
+        });
+    }
 
 
 }

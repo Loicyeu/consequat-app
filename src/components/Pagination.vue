@@ -1,6 +1,6 @@
 <template>
   <nav aria-label="Navigation">
-    <ul class="pagination">
+    <ul class="pagination flex-wrap">
       <li v-if="$store.state.pageFirst" class="page-item">
         <button class="page-link btn rounded-right-0" disabled>Previous</button>
       </li>

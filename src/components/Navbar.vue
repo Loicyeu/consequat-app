@@ -5,20 +5,18 @@
         <i class="fas fa-utensils"></i>
         Consequat
       </a>
-      <form class="d-flex" onsubmit="return false;">
-        <input id="querySearch" class="form-control" type="search"
-               placeholder="Rechercher parmi plus de 5 000 recettes"
-               aria-label="Search" v-model="searchInput">
+      <div class="d-flex align-items-center">
+        <SearchBar class="mr-4"/>
         <div class="btn-group">
-          <button class="btn btn-outline-primary" type="button" data-toggle="collapse"
+          <button class="btn btn-outline-primary p-2" type="button" data-toggle="collapse"
                   data-target="#collapsedFilter" aria-expanded="false" aria-controls="collapsedFilter">
             <i class="fas fa-filter"></i>
           </button>
-          <button class="btn btn-outline-success input-group-append" type="submit" v-on:click="search">
+          <button class="btn btn-outline-success input-group-append p-2" type="submit" v-on:click="search">
             Rechercher
           </button>
         </div>
-      </form>
+      </div>
     </div>
   </nav>
 </template>
@@ -26,15 +24,22 @@
 <script>
 
 import SearchAPI from "@/models/SearchAPI";
+import SearchBar from "@/components/SearchBar";
 
 export default {
   name: "Navbar",
+  components: {
+    SearchBar
+  },
   data() {
     return {
       searchInput: "",
     }
   },
   methods: {
+    updateSearchInput: function (searchInput) {
+      this.searchInput = searchInput;
+    },
     search: function () {
       let params = {
         diet: this.$store.state.selectedDiet,
@@ -68,7 +73,5 @@ export default {
 </script>
 
 <style scoped>
-form {
-  width: 100%;
-}
+
 </style>

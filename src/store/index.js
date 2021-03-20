@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    //ROUTE SearchRecipe
     recipes: [],
     query: "",
 
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     selectedDiet: "none",
     selectedCuisine: "none",
     selectedType: "none",
+
+    //ROUTE RecipeDetails
+    recipe: {}
   },
   mutations: {
   },

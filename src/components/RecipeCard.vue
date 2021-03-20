@@ -5,7 +5,7 @@
       <h5 class="card-title">{{recipeName}}</h5>
       <hr>
       <div class="text-center mt-4">
-        <a href="#" class="btn btn-outline-success">Ouvrir la recette</a>
+        <a :href="'/recipe/'+recipeId" class="btn btn-outline-success">Ouvrir la recette</a>
       </div>
     </div>
     <div class="card-footer">

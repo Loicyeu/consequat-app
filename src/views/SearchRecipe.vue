@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Navbar/>
-    <NavbarFilter />
+    <NavbarFilter @storeSelectedDiet="storeSelectedDiet" @storeSelectedCuisine="storeSelectedCuisine"
+                  @storeSelectedType="storeSelectedType"/>
     <div class="container">
       <div v-if="$store.state.recipes.length>0" class="mt-3 d-flex flex-wrap justify-content-center">
         <RecipeCard class="m-3" v-for="recipe in $store.state.recipes" :key="recipe.id"
@@ -31,6 +32,17 @@ export default {
     NavbarFilter,
     RecipeCard,
     Pagination
+  },
+  methods: {
+    storeSelectedDiet: function (diet) {
+      this.$store.state.selectedDiet = diet;
+    },
+    storeSelectedCuisine: function (cuisine) {
+      this.$store.state.selectedCuisine = cuisine;
+    },
+    storeSelectedType: function (type) {
+      this.$store.state.selectedType = type;
+    }
   }
 }
 </script>
