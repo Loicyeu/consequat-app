@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import SearchRecipe from "@/views/SearchRecipe";
 
 Vue.use(VueRouter)
 
@@ -8,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: SearchRecipe
+    component: () => import('@/views/SearchRecipe')
   },
   {
     path: '/recipe/:id',
@@ -17,7 +16,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('@/views/ReceipeDetails')
-  }
+  },
 ]
 
 const router = new VueRouter({

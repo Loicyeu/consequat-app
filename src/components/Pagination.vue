@@ -34,21 +34,9 @@ export default {
   methods: {
     changePage: function (query) {
       SearchAPI.getRecipeFormQuery(query).then(data => {
-        this.$store.state.recipes = data.results;
-        this.$store.state.resultData = [];
-        for (let i = 0; i < (data.totalResults / 10); i++) {
-          this.$store.state.resultData.push({
-            page: i,
-            requestQuery: this.$store.state.query + "&offset=" + (i * 10),
-            selected: data.offset === i * 10,
-          });
-        }
-        this.$store.state.pageFirst = data.offset===0;
-        this.$store.state.pageLast = data.offset+10>=data.totalResults;
+        this.$store.commit("setFoundRecipes", data)
       }).catch(reason => {
-        this.$store.state.recipes = [];
-        this.$store.state.resultData = {};
-        this.$store.state.resultError = reason;
+        this.$store.commit("clearFoundRecipes", reason);
       });
     }
   }

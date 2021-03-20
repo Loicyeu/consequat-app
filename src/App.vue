@@ -15,5 +15,11 @@ export default {
 </script>
 
 <style>
-
+#app {
+  background-image: url("assets/geometric2.jpg");
+  background-repeat: repeat-y;
+  background-position: top;
+  background-size: cover;
+  min-height: 100vh;
+}
 </style>

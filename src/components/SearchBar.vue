@@ -1,12 +1,15 @@
 <template>
   <div>
-    <input id="querySearch" class="form-control" type="search" placeholder="Rechercher parmi plus de 5 000 recettes"
+    <input id="querySearch" class="form-control bg-dark text-light" type="search" placeholder="Rechercher parmi plus de 5 000 recettes"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" autocomplete="off"
-           aria-label="Search" v-model="searchInput" @keydown="onKeyPressed" @focus="openAutocomplete = true" @focusout="focusOut">
+           aria-label="Search" v-model="searchInput" @keydown="onKeyPressed" @focus="openAutocomplete = true"
+           @focusout="focusOut">
 
-    <div class="dropdown-menu" :class="{'show': openAutocomplete && autocompletes.length>0}" aria-labelledby="querySearch"
+    <div class="dropdown-menu" :class="{'show': openAutocomplete && autocompletes.length>0}"
+         aria-labelledby="querySearch"
          v-if="autocompletes.length > 0">
-      <a class="dropdown-item" v-for="complete in autocompletes" :key="complete" @click="setComplete(complete)">{{ complete }}</a>
+      <a class="dropdown-item" v-for="complete in autocompletes" :key="complete"
+         @click="setComplete(complete)">{{ complete }}</a>
     </div>
   </div>
 
@@ -28,17 +31,16 @@ export default {
     onKeyPressed: function () {
       this.$emit('updateSearchInput', this.searchInput);
       if (this.searchInput.length > 2) {
-        SearchAPI.getAutocomplete(this.searchInput)
-            .then(values => {
-              this.autocompletes = values;
-            });
-      }else {
+        SearchAPI.getAutocomplete(this.searchInput).then(values => {
+          this.autocompletes = values;
+        });
+      } else {
         this.autocompletes = [];
       }
     },
     setComplete: function (complete) {
-      console.log(complete)
       this.searchInput = complete
+      this.onKeyPressed();
     },
     focusOut: function () {
       setTimeout(() => this.openAutocomplete = false, 100)

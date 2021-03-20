@@ -23,7 +23,6 @@ class SearchAPI {
      * @return {Promise<unknown>} Retourne un tableau de recette simple.
      */
     static getRecipeFormQuery(query) {
-        console.log("QUERY : " + query)
         return new Promise((resolve, reject) => {
             fetch(query)
                 .then(value => value.json())
@@ -82,11 +81,22 @@ class SearchAPI {
             const url = this.BASE_URL+"recipes/autocomplete?apiKey=" + apiKey + "&number=10&query="+query;
             fetch(url)
                 .then(value => value.json())
-                .then(data => {
-                    console.log(data)
-                    resolve(data.map(el => el.title))
-                })
+                .then(data => resolve(data.map(el => el.title)))
                 .catch(reason => reject(reason))
+        });
+    }
+
+    /**
+     * Fonction qui retourne 3 recettes aléatoires
+     * @return {Promise<unknown>} Les trois recettes
+     */
+    static getRandomRecipes() {
+        return new Promise((resolve, reject) => {
+            const url = this.BASE_URL+"recipes/random?apiKey="+apiKey+"&number=3";
+            fetch(url)
+                .then(value => value.json())
+                .then(data => resolve(data.recipes))
+                .catch(reason => reject(reason));
         });
     }
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <GeneralNavbar />
     <div class="container bg-light">
       <RecipePresentation v-if="Object.keys(this.$store.state.recipe).length>0" />
       <div v-else-if="error!==null">
@@ -15,15 +15,14 @@
 
 <script>
 import SearchAPI from "@/models/SearchAPI";
-import Recipe from "@/models/Recipe";
 import RecipePresentation from "@/components/RecipePresentation";
-import Navbar from "@/components/Navbar";
+import GeneralNavbar from "@/components/GeneralNavbar";
 
 export default {
   name: "ReceipeDetails",
   components: {
     RecipePresentation,
-    Navbar
+    GeneralNavbar,
   },
   data: function () {
     return {
@@ -36,9 +35,11 @@ export default {
     },
   },
   beforeMount() {
-    SearchAPI.getRecipeInformation(Number(this.$route.params.id)).then(value => {
-      this.$store.state.recipe = new Recipe(value);
+    SearchAPI.getRecipeInformation(Number(this.$route.params.id)).then(recipe => {
+      console.log(recipe)
+      this.$store.commit("setRecipe", recipe);
     }).catch(reason => {
+      console.log(reason)
       //FIXME: patch errors thrown by Recipe
       this.error = reason;
     });
