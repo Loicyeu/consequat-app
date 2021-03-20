@@ -1,9 +1,11 @@
+<!--Numéro de la pagination-->
+
 <template>
   <li v-if="selected" class="page-item active">
-    <button class="page-link btn rounded-0">{{page}}</button>
+    <button class="page-link btn rounded-0">{{ page }}</button>
   </li>
   <li v-else class="page-item">
-    <button class="page-link btn rounded-0" v-on:click="changePage(query)">{{page}}</button>
+    <button class="page-link btn rounded-0" v-on:click="changePage(query)">{{ page }}</button>
   </li>
 </template>
 

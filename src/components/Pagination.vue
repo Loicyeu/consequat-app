@@ -1,3 +1,6 @@
+<!--Pagination lors de la recherche de recettes.-->
+<!--Permet de naviguer entre toutes les pages de la recherche-->
+
 <template>
   <nav aria-label="Navigation">
     <ul class="pagination flex-wrap">
@@ -14,7 +17,8 @@
       <li v-if="$store.state.pageLast" class="page-item">
         <button class="page-link btn rounded-left-0" disabled>Next</button>
       </li>
-      <li v-else class="page-item" v-on:click="changePage($store.state.resultData[$store.state.resultData.length].requestQuery)">
+      <li v-else class="page-item"
+          v-on:click="changePage($store.state.resultData[$store.state.resultData.length].requestQuery)">
         <button class="page-link btn rounded-left-0">Next</button>
       </li>
 

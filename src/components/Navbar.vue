@@ -1,3 +1,5 @@
+<!--Navbar de la page d'accueil permettant de rechercher une recette ou d'ouvrir les filtres.-->
+
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -45,6 +47,7 @@ export default {
         diet: this.$store.state.selectedDiet,
         type: this.$store.state.selectedType,
         cuisine: this.$store.state.selectedCuisine,
+        intolerance: this.$store.state.selectedIntolerance,
       }
       this.searchInput = this.searchInput.replace("&", "")
       this.searchInput = this.searchInput.replace("=", "")
@@ -53,8 +56,8 @@ export default {
             this.$store.commit("setQuery", data.request)
             this.$store.commit("setFoundRecipes", data);
           }).catch(reason => {
-            this.$store.commit("clearFoundRecipes", reason);
-          });
+        this.$store.commit("clearFoundRecipes", reason);
+      });
     }
   }
 }

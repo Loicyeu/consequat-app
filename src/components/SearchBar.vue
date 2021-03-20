@@ -1,6 +1,10 @@
+<!--Bar de recherche pour les recettes avec autocomplétion "maison".-->
+<!--Autocomplétion réaliser grace au CDN Bootstrap-->
+
 <template>
   <div>
-    <input id="querySearch" class="form-control bg-dark text-light" type="search" placeholder="Rechercher parmi plus de 5 000 recettes"
+    <input id="querySearch" class="form-control bg-dark text-light" type="search"
+           placeholder="Rechercher parmi plus de 5 000 recettes"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" autocomplete="off"
            aria-label="Search" v-model="searchInput" @keydown="onKeyPressed" @focus="openAutocomplete = true"
            @focusout="focusOut">

@@ -1,3 +1,6 @@
+<!--Présentation de la recette-->
+<!--Affichage des ingrédients, de l'image, du score et des vins lorsqu'ils sont disponibles.-->
+
 <template>
   <div>
     <div class="d-flex mb-4">

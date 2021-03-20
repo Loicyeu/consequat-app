@@ -1,3 +1,5 @@
+<!--Application général, permet l'affichage de la bonne vue dans mon cas-->
+
 <template>
   <div id="app">
     <router-view/>
@@ -7,9 +9,7 @@
 <script>
 
 export default {
-  components: {
-
-  },
+  components: {},
 
 }
 </script>

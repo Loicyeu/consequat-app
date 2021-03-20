@@ -50,12 +50,16 @@ class SearchAPI {
         if (params.diet !== "none") {
             queryParams += "diet=" + params.diet + "&";
         }
-        if (params.cuisine !== "none") {
+        if (params.cuisine.length > 0) {
             queryParams += "cuisine=" + params.cuisine + "&";
         }
         if (params.type !== "none") {
             queryParams += "type=" + params.type + "&";
         }
+        if (params.intolerance.length > 0) {
+            queryParams += "intolerances=" + params.intolerance + "&";
+        }
+        console.log(queryParams)
         return queryParams;
     }
 

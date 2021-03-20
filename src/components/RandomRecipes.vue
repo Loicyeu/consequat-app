@@ -1,8 +1,10 @@
+<!--Recettes aléatoire lorsqu'aucune recette n'est trouvé par la recherche-->
+
 <template>
   <div>
-    <h2>Nous n'avons trouvé aucune recette...</h2>
-    <h5>Mais en voici quelques-unes qui pourraient vous plaire</h5>
-    <div class="d-flex justify-content-around">
+    <h2 class="text-light">Nous n'avons trouvé aucune recette...</h2>
+    <h5 class="text-light">Mais en voici quelques-unes qui pourraient vous plaire</h5>
+    <div class="d-flex justify-content-around mt-5">
       <RecipeCard v-for="recipe in recipes" :key="recipe.id"
                   :recipe-id="recipe.id" :recipe-name="recipe.title" :recipe-image="recipe.image"/>
     </div>

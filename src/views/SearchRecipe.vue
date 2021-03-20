@@ -1,15 +1,16 @@
+<!--Vue permettant de rechercher une recette-->
+
 <template>
   <div id="app">
     <Navbar/>
-    <NavbarFilter @storeSelectedDiet="storeSelectedDiet" @storeSelectedCuisine="storeSelectedCuisine"
-                  @storeSelectedType="storeSelectedType"/>
+    <NavbarFilter/>
     <div class="container mt-3">
       <div v-if="$store.state.recipes.length>0" class="d-flex flex-wrap justify-content-center">
         <RecipeCard class="m-3" v-for="recipe in $store.state.recipes" :key="recipe.id"
                     :recipe-id="recipe.id" :recipe-name="recipe.title" :recipe-image="recipe.image"/>
       </div>
       <div v-else>
-        <RandomRecipes />
+        <RandomRecipes/>
       </div>
       <div v-if="$store.state.recipes.length>0" class="d-flex justify-content-center">
         <Pagination/>
@@ -34,17 +35,6 @@ export default {
     RecipeCard,
     RandomRecipes,
     Pagination
-  },
-  methods: {
-    storeSelectedDiet: function (diet) {
-      this.$store.commit("setSelectedDiet", diet);
-    },
-    storeSelectedCuisine: function (cuisine) {
-      this.$store.commit("setSelectedCuisine", cuisine);
-    },
-    storeSelectedType: function (type) {
-      this.$store.commit("setSelectedType", type);
-    }
   }
 }
 </script>

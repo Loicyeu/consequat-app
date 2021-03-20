@@ -1,10 +1,12 @@
+<!--Vue présentant une recette en détail-->
+
 <template>
   <div>
-    <GeneralNavbar />
+    <GeneralNavbar/>
     <div class="container bg-light">
-      <RecipePresentation v-if="Object.keys(this.$store.state.recipe).length>0" />
+      <RecipePresentation v-if="Object.keys(this.$store.state.recipe).length>0"/>
       <div v-else-if="error!==null">
-        <p>{{this.error}}</p>
+        <p>{{ this.error }}</p>
       </div>
       <div v-else class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>

@@ -1,16 +1,18 @@
+<!--Carte présentant une recette lors de la recherche-->
+<!--Permet d'avoir le détail par le biais d'un bouton amenant sur une page-->
+
 <template>
   <div class="card" style="width: 18rem;">
     <img :src="recipeImage" class="card-img-top" :alt="recipeName">
     <div class="card-body">
-      <h5 class="card-title">{{recipeName}}</h5>
+      <h5 class="card-title">{{ recipeName }}</h5>
       <hr>
       <div class="text-center mt-4">
         <router-link class="btn btn-outline-success" :to="'/recipe/'+recipeId">Ouvrir la recette</router-link>
-<!--        <a :href="'/recipe/'+recipeId" class="btn btn-outline-success">Ouvrir la recette</a>-->
       </div>
     </div>
     <div class="card-footer">
-      <small class="text-muted">Recette #{{recipeId}}</small>
+      <small class="text-muted">Recette #{{ recipeId }}</small>
     </div>
   </div>
 </template>
